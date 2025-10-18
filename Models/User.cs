@@ -6,7 +6,7 @@ namespace GoldCard.Models
 {
     public class User
     {
-        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        //[JsonIgnore]
         public int Id { get; set; }
 
         [Required]

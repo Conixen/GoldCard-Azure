@@ -19,7 +19,8 @@ namespace GoldCard
                 .AddJsonOptions(options =>
                 {
                     options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles; // eller ReferenceHandler.Preserve
-                    options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
+                    options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault;
+
                 });
 
             builder.Services.AddDbContext<AppDbContext>(options =>
