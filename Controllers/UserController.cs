@@ -45,6 +45,8 @@ namespace GoldCard.Controllers
         [HttpPost]
         public async Task<ActionResult<User>> Create(User user)
         {
+            user.Id = 0;
+
             db.Users.Add(user);
             await db.SaveChangesAsync();
             return CreatedAtAction(nameof(GetById), new { id = user.Id }, user);
@@ -60,7 +62,7 @@ namespace GoldCard.Controllers
         [HttpPut("{id:int}")]
         public async Task<IActionResult> Update(int id, User user)
         {
-            if (id != user.Id) return BadRequest();
+            user.Id = id;  
 
             db.Entry(user).State = EntityState.Modified;
 

@@ -69,10 +69,13 @@ namespace GoldCard.Controllers
         [HttpPost]
         public async Task<ActionResult<Card>> Create(Card card)
         {
+            card.Id = 0;  // create new id in db
+
             db.Cards.Add(card);
             await db.SaveChangesAsync();
             return CreatedAtAction(nameof(GetById), new { id = card.Id }, card);
         }
+
 
         // PUT: api/cards
         /// <summary>
@@ -84,7 +87,7 @@ namespace GoldCard.Controllers
         [HttpPut("{id:int}")]
         public async Task<IActionResult> Update(int id, Card card)
         {
-            if (id != card.Id) return BadRequest();
+            card.Id = id;  
 
             db.Entry(card).State = EntityState.Modified;
 
